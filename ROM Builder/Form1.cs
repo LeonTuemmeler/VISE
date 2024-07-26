@@ -76,8 +76,6 @@ namespace ROM_Builder
             List<byte> bytes = new();
             foreach (InstructionContainer container in instructionContainer.Controls)
             {
-                object selectedItem = container.opcode.SelectedIndex;
-
                 byte[] data = new byte[]
                 {
                     (byte)container.opcode.SelectedIndex,
