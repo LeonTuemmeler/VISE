@@ -4,6 +4,7 @@
 void init_cpu_callbacks(cpu_t& cpu) {
 	cpu.add_callback(0x00, write_to_register);
 	cpu.add_callback(0x01, read_from_register);
+	cpu.add_callback(0x02, copy_from_register);
 }
 
 void write_to_register(cpu_t* ref, uint8_t reg, uint16_t data) {
@@ -22,4 +23,8 @@ void read_from_register(cpu_t* ref, uint8_t reg, uint16_t unused) {
 	}
 
 	ref->reg_data = *source;
+}
+
+void copy_from_register(cpu_t* ref, uint8_t flag, uint16_t data) {
+	todo("Implement copy_from_register (opcode 0x02)")
 }
