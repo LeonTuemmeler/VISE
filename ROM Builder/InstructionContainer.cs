@@ -1,14 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ROM_Builder
+﻿namespace ROM_Builder
 {
+    public enum OpCode
+    {
+        Write,
+        Read,
+        Move,
+        Clear,
+
+        Add,
+        Subtract,
+        Multiply,
+        Divide,
+        Modulo,
+
+        Jump,
+        JumpIf,
+        JumpIfNot,
+        Equal,
+        NotEqual,
+        LessThan,
+        GreaterThan,
+    }
+
     public partial class InstructionContainer : Control
     {
-        public NumericUpDown opcode, additional, data0, data1;
+        public ComboBox opcode;
+        public NumericUpDown additional, data0, data1;
         private Button deleteButton;
         private FlowLayoutPanel flowLayoutPanel;
 
@@ -28,7 +45,9 @@ namespace ROM_Builder
         {
             flowLayoutPanel = new FlowLayoutPanel();
 
-            opcode = ConstructUpDown();
+            opcode = new ComboBox();
+            opcode.Items.AddRange(Enum.GetNames(typeof(OpCode)));
+
             additional = ConstructUpDown();
             data0 = ConstructUpDown();
             data1 = ConstructUpDown();
