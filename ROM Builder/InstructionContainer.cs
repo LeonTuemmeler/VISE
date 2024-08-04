@@ -1,29 +1,30 @@
 ﻿namespace ROM_Builder
 {
-    public enum OpCode
-    {
-        Write,
-        Read,
-        Move,
-        Clear,
-
-        Add,
-        Subtract,
-        Multiply,
-        Divide,
-        Modulo,
-
-        Jump,
-        JumpIf,
-        JumpIfNot,
-        Equal,
-        NotEqual,
-        LessThan,
-        GreaterThan,
-    }
-
     public partial class InstructionContainer : Control
     {
+        public static Dictionary<byte, string> OpCodes = new()
+        {
+            { 0x00, "Write" },
+            { 0x01, "Read" },
+            { 0x02, "Move" },
+            { 0x03, "Clear" },
+
+            { 0x10, "Arithmetic Mode" },
+            { 0x11, "Add" },
+            { 0x12, "Subtract" },
+            { 0x13, "Multiply" },
+            { 0x14, "Divide" },
+            { 0x15, "Modulo" },
+
+            { 0x20, "Jump" },
+            { 0x21, "Jump If" },
+            { 0x22, "Jump If Not" },
+            { 0x23, "Equal" },
+            { 0x24, "Not Equal" },
+            { 0x25, "Less Than" },
+            { 0x26, "Greater Than" },
+        };
+
         public ComboBox opcode;
         public NumericUpDown additional, data0, data1;
         private Button deleteButton;
@@ -46,7 +47,8 @@
             flowLayoutPanel = new FlowLayoutPanel();
 
             opcode = new ComboBox();
-            opcode.Items.AddRange(Enum.GetNames(typeof(OpCode)));
+
+            opcode.Items.AddRange(OpCodes.Values.ToArray());
 
             additional = ConstructUpDown();
             data0 = ConstructUpDown();

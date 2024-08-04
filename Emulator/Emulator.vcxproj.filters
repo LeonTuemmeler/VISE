@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cpu.cpp">
+    <ClCompile Include="devices\cpu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="callbacks.cpp">
@@ -26,16 +26,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="macros.hpp">
+    <ClInclude Include="utils\macros.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpu.hpp">
+    <ClInclude Include="devices\cpu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="instruction.hpp">
+    <ClInclude Include="devices\instruction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="callbacks.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\num_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\flags.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

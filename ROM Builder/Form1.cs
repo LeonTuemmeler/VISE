@@ -53,7 +53,7 @@ namespace ROM_Builder
                 container.Size = new Size(instructionContainer.Size.Width, 30);
                 container.ParentPanel = instructionContainer;
 
-                container.opcode.SelectedIndex = data[i];
+                container.opcode.SelectedText = InstructionContainer.OpCodes[data[i]];
                 container.additional.Value = data[i + 1];
                 container.data0.Value = data[i + 2];
                 container.data1.Value = data[i + 3];
@@ -76,11 +76,12 @@ namespace ROM_Builder
             List<byte> bytes = new();
             foreach (InstructionContainer container in instructionContainer.Controls)
             {
-                object selectedItem = container.opcode.SelectedIndex;
+                string selected = container.opcode.Text;
+                byte opcode = InstructionContainer.OpCodes.First(x => x.Value == selected).Key;
 
                 byte[] data = new byte[]
                 {
-                    (byte)container.opcode.SelectedIndex,
+                    opcode,
                     (byte)container.additional.Value,
                     (byte)container.data0.Value,
                     (byte)container.data1.Value,

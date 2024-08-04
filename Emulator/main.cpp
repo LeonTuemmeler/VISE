@@ -2,10 +2,8 @@
 #include <fstream>
 #include <string>
 
-#include <cstdint>
-
-#include "macros.hpp"
-#include "cpu.hpp"
+#include "utils/macros.hpp"
+#include "devices/cpu.hpp"
 #include "callbacks.hpp"
 
 int main(int argc, char** argv) {
@@ -42,7 +40,7 @@ int main(int argc, char** argv) {
 		printf("0x%02X ; (off: 0x%02X)\n", buffer[i], i);
 	}
 
-	printf("---\n");
+	DEBUG_SEPERATOR("Writing instruction hex")
 #endif
 
 	in.close();

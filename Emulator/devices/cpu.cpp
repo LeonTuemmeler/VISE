@@ -1,5 +1,6 @@
 #include "cpu.hpp"
-#include "macros.hpp"
+#include "utils/macros.hpp"
+#include "utils/num_utils.hpp"
 
 cpu_t::cpu_t(uint8_t* instructions, int length)
 {
@@ -17,7 +18,7 @@ cpu_t::cpu_t(uint8_t* instructions, int length)
 		uint8_t data_0			= instructions[i + 2];
 		uint8_t data_1			= instructions[i + 3];
 
-		uint16_t full_data = ((uint16_t)data_0 << 8) | data_1;
+		uint16_t full_data = halves_to_u16(data_0, data_1);
 
 #ifdef _DEBUG
 		printf("0x%02X 0x%02X 0x%04X\n", op_code, additional, full_data);
@@ -55,9 +56,8 @@ uint16_t* cpu_t::get_register(const uint8_t& value) {
 }
 
 void cpu_t::execute() {
-#ifdef _DEBUG
-	printf("- RUNNING CPU -\n");
-#endif
+	DEBUG_SEPERATOR("Running CPU");
+
 	for (auto instruction : m_Instructions) {
 		CPU_CALLBACK callback = m_Callbacks[instruction.opcode];
 		
@@ -68,7 +68,7 @@ void cpu_t::execute() {
 		callback(this, instruction.additional, instruction.data);
 	
 #ifdef _DEBUG
-		printf("A: 0x%04X, B: 0x%04X, C: 0x%04X, DATA: 0x%04X\n", reg_a, reg_b, reg_c, reg_data);
+		printf("A: 0x%04X, B: 0x%04X, C: 0x%04X, DATA: 0x%04X, FLAGS: %d\n", reg_a, reg_b, reg_c, reg_data, (uint8_t)flags);
 #endif
 	}
 }
